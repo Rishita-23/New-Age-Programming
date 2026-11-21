@@ -1,0 +1,113 @@
+{
+  "experiment": "checkout-button-test",
+  "alpha": 0.05,
+  "data_quality": {
+    "total_rows": 20426,
+    "valid_rows": 19904,
+    "malformed_rows": 88,
+    "malformed_reasons": {
+      "invalid converted": 28,
+      "invalid revenue": 32,
+      "invalid timestamp": 28
+    },
+    "unknown_variant_rows": 27,
+    "duplicate_event_rows": 215,
+    "cross_variant_users": 96,
+    "cross_variant_rows_dropped": 192,
+    "srm": {
+      "observed": [
+        9866,
+        10038
+      ],
+      "expected": [
+        9952,
+        9952
+      ],
+      "chi_square": 1.4863344051446945,
+      "p_value": 0.22278606968838954,
+      "flagged": false
+    }
+  },
+  "metrics": [
+    {
+      "metric": "converted",
+      "kind": "binary",
+      "control": {
+        "name": "control",
+        "n": 9866,
+        "mean": 0.10064869247922177,
+        "variance": 0.09052770890705811
+      },
+      "treatment": {
+        "name": "treatment",
+        "n": 10038,
+        "mean": 0.11048017533373262,
+        "variance": 0.09828409739512732
+      },
+      "abs_lift": 0.009831482854510853,
+      "rel_lift": 0.09768117808922848,
+      "test": {
+        "name": "two-proportion z-test",
+        "statistic": 2.256485799237016,
+        "p_value": 0.0240402236673809,
+        "diff": 0.009831482854510867,
+        "ci_low": 0.0012960651045811518,
+        "ci_high": 0.018366900604440583,
+        "significant": true
+      },
+      "bootstrap": {
+        "iterations": 2000,
+        "workers": 2,
+        "ci_low": 0.0011821786112024295,
+        "ci_high": 0.01849967437744274,
+        "std_err": 0.0044273407126485765,
+        "seconds": 0.118664232
+      }
+    },
+    {
+      "metric": "revenue",
+      "kind": "continuous",
+      "control": {
+        "name": "control",
+        "n": 9866,
+        "mean": 1.9644009730387149,
+        "variance": 73.88050952962514
+      },
+      "treatment": {
+        "name": "treatment",
+        "n": 10038,
+        "mean": 2.2421677625024885,
+        "variance": 88.21752737167343
+      },
+      "abs_lift": 0.27776678946377364,
+      "rel_lift": 0.14140025039495813,
+      "test": {
+        "name": "Welch t-test",
+        "statistic": 2.177190547515773,
+        "df": 19801.542640365482,
+        "p_value": 0.02947812149992613,
+        "diff": 0.27776678946377364,
+        "ci_low": 0.027698561312947678,
+        "ci_high": 0.5278350176145996,
+        "significant": true
+      },
+      "bootstrap": {
+        "iterations": 2000,
+        "workers": 2,
+        "ci_low": 0.011496671012200865,
+        "ci_high": 0.525922434991305,
+        "std_err": 0.12710795435336625,
+        "seconds": 0.118040388
+      }
+    }
+  ],
+  "verdict": "SHIP",
+  "verdict_reason": "\"converted\" improved significantly (p=0.024)",
+  "timings_seconds": {
+    "aggregate": 0.001149038,
+    "bootstrap": 0.236716753,
+    "ingest_validate": 0.022791049,
+    "tests": 0.000330371,
+    "total": 0.260994272
+  }
+}
